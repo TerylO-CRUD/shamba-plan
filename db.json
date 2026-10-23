@@ -1,0 +1,54 @@
+{
+  "notes": [
+    {
+      "id": "1",
+        "town": "Nakuru",
+       "crop": "Maize",
+        "activity": "Planting",
+        "comment": "Planted maize seeds after the first rains.",
+        "date": "2026-10-20T08:00:00.000Z",
+       "temp": 24,
+       "condition": "light rain"
+    },
+    {
+      "id": "2",
+        "town": "Eldoret",
+        "crop": "Wheat",
+        "activity": "Weeding",
+        "comment": "Removed weeds from the wheat field.",
+         "date": "2026-10-19T09:30:00.000Z",
+        "temp": 21,
+        "condition": "overcast clouds"
+    },
+    {
+      "id": "3",
+      "town": "Kisumu",
+      "crop": "Tomatoes",
+      "activity": "Irrigation",
+        "comment": "Watered the tomato plants because the soil was dry.",
+      "date": "2026-10-18T07:15:00.000Z",
+      "temp": 29,
+      "condition": "clear sky"
+    },
+    {
+      "id": "4",
+      "town": "Nyeri",
+      "crop": "Potatoes",
+      "activity": "Fertilising",
+      "comment": "Applied fertiliser around the potato plants.",
+      "date": "2026-10-17T10:00:00.000Z",
+      "temp": 22,
+      "condition": "scattered clouds"
+    },
+    {
+      "id": "5",
+      "town": "Nakuru",
+      "crop": "Beans",
+      "activity": "Inspection",
+      "comment": "Checked the leaves for signs of pests and disease.",
+      "date": "2026-10-16T08:45:00.000Z",
+      "temp": null,
+      "condition": null
+    }
+  ]
+}

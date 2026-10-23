@@ -1,1 +1,0 @@
-printf "node_modules/\n" >> .gitignore
