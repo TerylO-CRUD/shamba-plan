@@ -173,3 +173,67 @@ function showWeather(weather, forecast) {
 
   addNoteBtn.hidden = false;
 }
+// Load farm notes
+    async function loadNotes() 
+    {
+    notesList.innerHTML = "<li class='list-group-item'>Loading notes...</li>";
+
+      try 
+      {
+        const response = await fetch(NOTES_URL);
+
+      if (!response.ok) 
+      {
+      throw new Error("Could not load farm notes.");
+      }
+
+        const notes = await response.json();
+
+    notes.sort(function(a, b) 
+    {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    notesList.innerHTML = "";
+
+      if (notes.length === 0) 
+      {
+      notesList.innerHTML =
+        "<li class='list-group-item'>No notes yet. Add your first note.</li>";
+      return;
+      }
+
+      for (let i = 0; i < notes.length; i++) 
+      {
+      const note = notes[i];
+
+          const item = document.createElement("li");
+            item.className = "list-group-item";
+
+         const title = document.createElement("strong");
+        title.textContent = note.crop + " · " + note.activity + " (" + note.town + ")";
+
+        const comment = document.createElement("p");
+          comment.textContent = note.comment;
+
+        const details = document.createElement("small");
+         details.className = "text-muted";
+           details.textContent = new Date(note.date).toLocaleString();
+
+      if (note.temp !== null && note.temp !== undefined) 
+      {
+        details.textContent += " · " + note.temp + "°C, " + note.condition;
+      }
+
+        item.appendChild(title);
+        item.appendChild(comment);
+        item.appendChild(details);
+        notesList.appendChild(item);
+      }
+      } 
+          catch (error) 
+      {
+            notesList.innerHTML = "";
+             showMessage("Could not load notes. Check that JSON Server is running.", "danger");
+  }
+}
