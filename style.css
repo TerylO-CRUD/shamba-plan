@@ -1,0 +1,38 @@
+body {
+  background: hsl(45, 40%, 94%);
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.temperature {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: hsl(154, 49%, 24%);
+}
+
+.day-card {
+  text-align: center;
+  background: hsl(0, 0%, 100%);
+  border-radius: 12px;
+  padding: 12px 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.hero {
+  background: linear-gradient(135deg, hsl(154, 49%, 24%), hsl(142, 37%, 39%));
+  color: hsl(0, 0%, 100%);
+  border-radius: 14px;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 0;
+  opacity: 0.9;
+}
