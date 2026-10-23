@@ -46,3 +46,63 @@ let currentWeather = null;
   document.getElementById("showWeather").addEventListener("click", function() {
   showPage("weather");
   });
+// OpenWeatherMap
+     async function getWeather(town) 
+      {
+      messageBox.innerHTML = "";
+        weatherResult.textContent = "Loading...";
+         addNoteBtn.hidden = true;
+
+    try {
+        const url = WEATHER_URL + "weather?q=" + encodeURIComponent(town) + "&units=metric&appid=" + API_KEY;
+        const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Could not find the town or get its weather.");
+    }
+
+    const weather = await response.json();
+
+    const forecastResponse = await fetch(
+      WEATHER_URL + "forecast?q=" + encodeURIComponent(town) + "&units=metric&appid=" + API_KEY
+    );
+
+    if (!forecastResponse.ok) {
+      throw new Error("Could not get the forecast.");
+    }
+
+    const forecast = await forecastResponse.json();
+
+    currentWeather = {
+      town: weather.name,
+      temp: Math.round(weather.main.temp),
+      condition: weather.weather[0].description
+    };
+
+    showWeather(weather, forecast);
+
+  } catch (error) {
+    weatherResult.textContent = "";
+    showMessage(error.message, "danger");
+  }
+}
+// Get weather details when a town is selected
+document.getElementById("townSelect").addEventListener("change", function(event) 
+{
+  getWeather(event.target.value);
+});
+// Search for a town
+    document.getElementById("searchForm").addEventListener("submit", function(event) 
+    {
+    event.preventDefault();
+
+    const town = document.getElementById("townInput").value.trim();
+
+  if (town === "") 
+    {
+    showMessage("Please enter a town name.", "warning");
+    return;
+    }
+
+  getWeather(town);
+    });
