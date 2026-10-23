@@ -14,3 +14,35 @@ const addNoteBtn = document.getElementById("addNoteBtn");
 const notesList = document.getElementById("notesList");
 
 let currentWeather = null;
+
+// Display messages
+    function showMessage(message, type) 
+    {
+      messageBox.innerHTML = "";
+
+      const alert = document.createElement("div");
+      alert.className = "alert alert-" + type;
+        alert.textContent = message;
+
+    messageBox.appendChild(alert);
+    }
+// Switch between pages
+      function showPage(page) 
+      {
+        weatherSection.hidden = page !== "weather";
+        notesSection.hidden = page !== "notes";
+        messageBox.innerHTML = "";
+
+        if (page === "notes") {
+        loadNotes();
+        }
+      }
+// Show the farm notes page
+  document.getElementById("showNotes").addEventListener("click", function() 
+  {
+  showPage("notes");
+  });
+// Show the weather page
+  document.getElementById("showWeather").addEventListener("click", function() {
+  showPage("weather");
+  });
