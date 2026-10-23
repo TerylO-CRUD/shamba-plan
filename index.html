@@ -26,8 +26,24 @@
         <div class="hero">
         <h1>Plan your farm work around the weather</h1>
 
-        <p>Check the forecast for any town, get simple farming advice, and keep a log of what you did.</p>
-    
+        <p>Check the forecast for any town, get simple farming advice, and keep a log of what you did.
+        </p>
+      <form id="searchForm" class="row g-2 my-3">
+        <div class="col-md-4">
+          <label for="townSelect" class="form-label">Pick a town</label>
+          <select id="townSelect" class="form-select">
+           <option value="Nairobi,KE">Nairobi, Kenya</option>
+          <option value="Nakuru,KE" selected>Nakuru, Kenya</option>
+          <option value="Kisumu,KE">Kisumu, Kenya</option>
+          <option value="Kampala,UG">Kampala, Uganda</option>
+          <option value="Lagos,NG">Lagos, Nigeria</option>
+          <option value="Kumasi,GH">Kumasi, Ghana</option>
+          <option value="Pune,IN">Pune, India</option>
+          <option value="Des Moines,US">Des Moines, USA</option>
+          <option value="Cordoba,AR">Cordoba, Argentina</option>
+          <option value="Lyon,FR">Lyon, France</option>       
+          </select>
+        </div>
         <div class="col-md-8">
           <label for="townInput" class="form-label">Or search another town</label>
           <div class="input-group">
