@@ -1,0 +1,4 @@
+# Shamba Weather Planner #
+A single-page web app that helps farmers plan field work around the weather. Pick a town, or search any city in the world, to see current conditions, a 5-day forecast and a line of simple advice, such as “Rain expected, delay spraying.” Farmers can also keep a farm log, where each note records the crop, the activity and the weather at that moment, so they can look back and see what conditions each job was done in.
+
+Built with HTML, CSS, JavaScript and Bootstrap. It reads weather data from the OpenWeatherMap API and saves and loads farm notes. It reacts to clicks, form submissions and dropdown changes, and shows  error messages if something goes wrong, such as no internet or an unknown town.
