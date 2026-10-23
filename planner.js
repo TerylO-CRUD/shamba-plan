@@ -300,3 +300,5 @@ function showWeather(weather, forecast) {
   }
 });
 
+// Load weather
+getWeather(document.getElementById("townSelect").value);
