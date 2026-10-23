@@ -106,3 +106,70 @@ document.getElementById("townSelect").addEventListener("change", function(event)
 
   getWeather(town);
     });
+// weather and farming advice
+function showWeather(weather, forecast) {
+  let rainSoon = false;
+
+  // Check for rain in the next 24 hours
+  for (let i = 0; i < 8 && i < forecast.list.length; i++) {
+    if (forecast.list[i].weather[0].main === "Rain") {
+      rainSoon = true;
+    }
+  }
+
+  let advice = "Good conditions for field work.";
+
+  if (rainSoon) {
+    advice = "Rain is expected. Consider delaying spraying and fertiliser.";
+  } else if (weather.main.temp >= 30) {
+    advice = "It is hot. Consider working early or late in the day.";
+  }
+
+  // Get one forecast for 5 days
+  const days = [];
+  const offset = forecast.city.timezone;
+
+  for (let i = 0; i < forecast.list.length; i++) {
+    const item = forecast.list[i];
+    const hour = new Date(
+      (item.dt + offset) * 1000
+    ).getUTCHours();
+
+    if (hour >= 11 && hour <= 13) {
+      days.push(item);
+    }
+  }
+
+  let forecastHtml = "";
+
+  for (let i = 0; i < days.length; i++) {
+    forecastHtml += `
+      <div class="col-6 col-md">
+        <div class="day-card">
+          <strong>${days[i].dt_txt.slice(5, 10)}</strong>
+          <br>
+          ${Math.round(days[i].main.temp)}°C
+          <br>
+          <small>${days[i].weather[0].description}</small>
+        </div>
+      </div>`;
+  }
+
+  weatherResult.innerHTML = `
+    <div class="card card-body mb-3">
+      <h2 class="h4">${weather.name}</h2>
+      <div class="temperature">${Math.round(weather.main.temp)}°C</div>
+      <p class="mb-0">
+        ${weather.weather[0].description}
+        · Humidity ${weather.main.humidity}%
+        · Wind ${Math.round(weather.wind.speed * 3.6)} km/h
+      </p>
+    </div>
+
+    <div class="alert alert-info">${advice}</div>
+    <h2 class="h5">Next 5 days</h2>
+    <div class="row g-2">${forecastHtml}</div>`
+  ;
+
+  addNoteBtn.hidden = false;
+}
