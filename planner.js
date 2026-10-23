@@ -237,3 +237,66 @@ function showWeather(weather, forecast) {
              showMessage("Could not load notes. Check that JSON Server is running.", "danger");
   }
 }
+
+// Save a farm note
+        async function saveNote(note) 
+        {
+           const response = await fetch(NOTES_URL, { method: "POST", headers: {"Content-Type": "application/json"
+        },
+            body: JSON.stringify(note)
+  });
+
+    if (!response.ok) 
+    {
+    throw new Error("Could not save your note.");
+    }
+        }
+
+// Open the farm log
+      addNoteBtn.addEventListener("click", function() 
+      {
+    showPage("notes");
+
+     if (currentWeather) 
+      {
+       document.getElementById("noteTown").value = currentWeather.town;
+      }
+      });
+
+//new farm note
+       document.getElementById("noteForm").addEventListener("submit", async function(event) 
+    {
+      event.preventDefault();
+
+      const note = 
+    {
+      town: document.getElementById("noteTown").value.trim(), crop: document.getElementById("noteCrop").value.trim(),
+    activity: document.getElementById("noteActivity").value, comment: document.getElementById("noteComment").value.trim(),
+    date: new Date().toISOString(), temp: null, condition: null
+    };
+
+  if (note.town === "" || note.crop === "" || note.comment === "") 
+    {
+    showMessage("Please fill in the town, crop and note.", "warning");
+    return;
+    }
+
+  if (currentWeather && currentWeather.town === note.town) 
+    {
+    note.temp = currentWeather.temp;
+    note.condition = currentWeather.condition;
+    }
+
+  try{
+    await saveNote(note);
+
+      event.target.reset();
+      document.getElementById("noteTown").value = note.town;
+      showMessage("Note saved!", "success");
+      loadNotes();
+
+  } catch (error) {
+    showMessage(error.message, "danger");
+  }
+});
+
