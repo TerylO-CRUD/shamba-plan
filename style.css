@@ -36,3 +36,15 @@ body {
   margin: 0;
   opacity: 0.9;
 }
+#weatherResult .card {
+  color: hsl(210, 11%, 15%);
+}
+
+#weatherResult .day-card {
+  color: hsl(210, 11%, 15%);
+}
+
+#weatherResult .day-card strong,
+#weatherResult .day-card small {
+  color: hsl(210, 11%, 15%);
+}
